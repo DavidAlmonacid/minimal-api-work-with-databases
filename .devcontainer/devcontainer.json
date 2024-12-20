@@ -30,7 +30,9 @@
       "extensions": [
         "ms-dotnettools.csdevkit",
         "csharpier.csharpier-vscode",
-        "github.copilot"
+        "github.copilot",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
       ]
     }
   }

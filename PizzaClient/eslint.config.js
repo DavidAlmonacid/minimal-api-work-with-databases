@@ -4,8 +4,6 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
-
 export default tseslint.config(
   { ignores: ["dist"] },
   {
@@ -26,6 +24,5 @@ export default tseslint.config(
         { allowConstantExport: true }
       ]
     }
-  },
-  eslintPluginPrettierRecommended
+  }
 );

@@ -7,10 +7,7 @@
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [
-		3000,
-		5100
-	],
+	"forwardPorts": [3000, 5100],
 	// "portsAttributes": {
 	//		"5001": {
 	//			"protocol": "https"
@@ -27,14 +24,23 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"github.copilot",
 				"ms-dotnettools.csdevkit",
 				"csharpier.csharpier-vscode",
-				"github.copilot",
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				"bradlc.vscode-tailwindcss",
 				"postman.postman-for-vscode"
-			]
+			],
+			"settings": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"[csharp]": {
+					"editor.tabSize": 4,
+					"editor.wordWrapColumn": 100,
+					"editor.rulers": [100],
+					"editor.defaultFormatter": "csharpier.csharpier-vscode"
+				}
+			}
 		}
 	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.

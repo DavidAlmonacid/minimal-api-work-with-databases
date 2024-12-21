@@ -7,7 +7,7 @@ interface PizzaListProps {
   onCreate: (item: Pizza) => void;
   onUpdate: (item: Pizza) => void;
   onDelete: (id: number) => void;
-  error?: { message: string };
+  error: { message: string } | null;
 }
 
 export function PizzaList({

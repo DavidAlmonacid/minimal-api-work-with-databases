@@ -19,7 +19,7 @@ public class PizzaDb : DbContext
                 {
                     Id = 1,
                     Name = "Pepperoni",
-                    Description = "Classic Pepperoni Pizza",
+                    Ingredients = "Tomato sauce, mozzarella cheese, pepperoni",
                 }
             );
     }

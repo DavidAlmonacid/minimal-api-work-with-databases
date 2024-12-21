@@ -79,7 +79,7 @@ app.MapPut(
         }
 
         pizzaItem.Name = updatePizza.Name;
-        pizzaItem.Description = updatePizza.Description;
+        pizzaItem.Ingredients = updatePizza.Ingredients;
 
         await db.SaveChangesAsync();
         return Results.NoContent();

@@ -1,5 +1,7 @@
+import { Button, Field, Input, Title3 } from "@fluentui/react-components";
 import { useState } from "react";
 import type { Pizza } from "./Pizza";
+import { PizzaItem } from "./PizzaItem";
 
 interface PizzaListProps {
   name: string;
@@ -21,7 +23,7 @@ export function PizzaList({
   const [formData, setFormData] = useState<Pizza>({
     id: 0,
     name: "",
-    description: ""
+    ingredients: ""
   });
   const [editingId, setEditingId] = useState<number | null>(null);
 
@@ -44,67 +46,73 @@ export function PizzaList({
       onCreate(formData);
     }
 
-    setFormData({ id: 0, name: "", description: "" });
+    setFormData({ id: 0, name: "", ingredients: "" });
   };
 
   const handleEdit = (item: Pizza) => {
-    const { id, name, description } = item;
+    const { id, name, ingredients } = item;
 
     setEditingId(item.id);
-    setFormData({ id, name, description });
+    setFormData({ id, name, ingredients });
   };
 
   const handleCancelEdit = () => {
     setEditingId(null);
-    setFormData({ id: 0, name: "", description: "" });
+    setFormData({ id: 0, name: "", ingredients: "" });
   };
 
   return (
     <div>
-      <h2>New {name}</h2>
+      <Title3>New {name}</Title3>
 
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleFormChange}
-        />
+        <Field label="Name" required>
+          <Input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleFormChange}
+            required
+          />
+        </Field>
 
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleFormChange}
-        />
+        <Field label="Ingredients" required>
+          <Input
+            type="text"
+            name="ingredients"
+            value={formData.ingredients}
+            onChange={handleFormChange}
+            required
+          />
+        </Field>
 
-        <button type="submit">{editingId ? "Update" : "Create"}</button>
+        <Button appearance="primary" type="submit">
+          {editingId ? "Update" : "Create"}
+        </Button>
 
         {editingId && (
-          <button type="button" onClick={handleCancelEdit}>
+          <Button
+            appearance="secondary"
+            type="button"
+            onClick={handleCancelEdit}
+          >
             Cancel
-          </button>
+          </Button>
         )}
       </form>
 
       {error && <div>{error.message}</div>}
 
-      <h2>{name}s</h2>
+      <Title3>{name}s</Title3>
 
       <ul>
         {data.map((item) => (
-          <li key={item.id}>
-            <div>
-              {item.name} - {item.description}
-            </div>
-
-            <div>
-              <button onClick={() => handleEdit(item)}>Edit</button>
-              <button onClick={() => onDelete(item.id)}>Delete</button>
-            </div>
-          </li>
+          <PizzaItem
+            key={item.id}
+            pizza={item}
+            handleEdit={handleEdit}
+            onDelete={onDelete}
+          />
         ))}
       </ul>
     </div>

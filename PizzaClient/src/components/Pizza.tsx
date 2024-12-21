@@ -4,7 +4,7 @@ import { PizzaList } from "./PizzaList";
 export interface Pizza {
   id: number;
   name: string;
-  description: string;
+  ingredients: string;
 }
 
 const term = "Pizza";
@@ -31,10 +31,12 @@ export function Pizza() {
   const handleCreate = (item: Pizza) => {
     console.log(`add item: ${JSON.stringify(item)}`);
 
+    const { name, ingredients } = item;
+
     fetch(API_URL, {
       method: "POST",
       headers,
-      body: JSON.stringify({ name: item.name, description: item.description })
+      body: JSON.stringify({ name, ingredients })
     })
       .then((response) => response.json())
       .then((returnedItem) => setData([...data, returnedItem]))

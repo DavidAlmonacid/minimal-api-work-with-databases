@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start backend server",
+      "type": "shell",
+      "command": "cd PizzaStore && dotnet watch",
+      "icon": {
+        "id": "rocket",
+        "color": "terminal.ansiMagenta"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Start client dev server",
+      "type": "shell",
+      "command": "cd PizzaClient && npm run dev",
+      "icon": {
+        "id": "target",
+        "color": "terminal.ansiYellow"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

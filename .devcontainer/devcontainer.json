@@ -14,10 +14,10 @@
 	//		}
 	// }
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet tool install -g dotnet-ef",
+	"postCreateCommand": "dotnet tool install -g dotnet-ef && dotnet tool install csharpier && dotnet dev-certs https",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
-			"version": "18"
+			"version": "lts"
 		}
 	},
 	// Configure tool-specific properties.
@@ -30,7 +30,8 @@
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				"bradlc.vscode-tailwindcss",
-				"postman.postman-for-vscode"
+				"postman.postman-for-vscode",
+				"qwtel.sqlite-viewer"
 			],
 			"settings": {
 				"editor.defaultFormatter": "esbenp.prettier-vscode",

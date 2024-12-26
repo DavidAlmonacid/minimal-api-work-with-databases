@@ -18,6 +18,9 @@
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts"
+		},
+		"ghcr.io/jckimble/devcontainer-features/ngrok": {
+			"version": "stable"
 		}
 	},
 	// Configure tool-specific properties.

@@ -5,22 +5,12 @@
       "label": "Start backend server",
       "type": "shell",
       "command": "cd PizzaStore && dotnet watch",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
       "icon": {
         "id": "rocket",
         "color": "terminal.ansiMagenta"
-      },
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
-    },
-    {
-      "label": "Install client dependencies",
-      "type": "npm",
-      "script": "install",
-      "path": "PizzaClient",
-      "dependsOrder": "parallel",
-      "runOptions": {
-        "runOn": "folderOpen"
       }
     },
     {
@@ -28,14 +18,13 @@
       "type": "npm",
       "script": "dev",
       "path": "PizzaClient",
-      "dependsOn": ["Install client dependencies"],
-      "dependsOrder": "sequence",
+      "dependsOrder": "parallel",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
       "icon": {
         "id": "target",
         "color": "terminal.ansiYellow"
-      },
-      "runOptions": {
-        "runOn": "folderOpen"
       }
     }
   ]

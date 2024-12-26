@@ -14,9 +14,21 @@
       }
     },
     {
+      "label": "Install client dependencies",
+      "type": "npm",
+      "script": "install",
+      "path": "PizzaClient",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
       "label": "Start client dev server",
-      "type": "shell",
-      "command": "cd PizzaClient && npm run dev",
+      "type": "npm",
+      "script": "dev",
+      "path": "PizzaClient",
+      "dependsOn": ["Install client dependencies"],
+      "dependsOrder": "sequence",
       "icon": {
         "id": "target",
         "color": "terminal.ansiYellow"

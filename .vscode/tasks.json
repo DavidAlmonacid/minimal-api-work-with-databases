@@ -18,6 +18,7 @@
       "type": "npm",
       "script": "install",
       "path": "PizzaClient",
+      "dependsOrder": "parallel",
       "runOptions": {
         "runOn": "folderOpen"
       }

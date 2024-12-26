@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { PizzaForm } from "./PizzaForm";
 import { PizzaList } from "./PizzaList";
 
 export interface Pizza {
@@ -14,8 +15,14 @@ const headers = {
 };
 
 export function Pizza() {
+  const [formData, setFormData] = useState<Pizza>({
+    id: 0,
+    name: "",
+    ingredients: ""
+  });
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [data, setData] = useState<Array<Pizza>>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchPizzaData();
@@ -67,12 +74,22 @@ export function Pizza() {
 
   return (
     <div>
+      <PizzaForm
+        name={term}
+        formData={formData}
+        setFormData={setFormData}
+        editingId={editingId}
+        setEditingId={setEditingId}
+        onCreate={handleCreate}
+        onUpdate={handleUpdate}
+      />
+
       <PizzaList
         name={term}
         data={data}
         error={error}
-        onCreate={handleCreate}
-        onUpdate={handleUpdate}
+        setFormData={setFormData}
+        setEditingId={setEditingId}
         onDelete={handleDelete}
       />
     </div>

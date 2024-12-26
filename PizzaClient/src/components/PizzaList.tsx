@@ -1,53 +1,46 @@
-import { Button, Field, Input, Title3 } from "@fluentui/react-components";
-import { useState } from "react";
+import { makeStyles, Title3 } from "@fluentui/react-components";
 import type { Pizza } from "./Pizza";
 import { PizzaItem } from "./PizzaItem";
 
 interface PizzaListProps {
   name: string;
   data: Array<Pizza>;
-  onCreate: (item: Pizza) => void;
-  onUpdate: (item: Pizza) => void;
+  error: string | null;
+  setFormData: React.Dispatch<React.SetStateAction<Pizza>>;
+  setEditingId: React.Dispatch<React.SetStateAction<number | null>>;
   onDelete: (id: number) => void;
-  error: { message: string } | null;
 }
+
+const useStyles = makeStyles({
+  listWrapper: {
+    padding: "16px"
+  },
+  title: {
+    display: "block",
+    margin: "12px 0"
+  },
+  list: {
+    display: "grid",
+    gap: "20px",
+    listStyleType: "none",
+    padding: 0,
+
+    ["@media screen and (min-width: 640px)"]: {
+      gridTemplateColumns: "1fr 1fr",
+      padding: "16px"
+    }
+  }
+});
 
 export function PizzaList({
   name,
   data,
-  onCreate,
-  onUpdate,
-  onDelete,
-  error
+  error,
+  setFormData,
+  setEditingId,
+  onDelete
 }: PizzaListProps) {
-  const [formData, setFormData] = useState<Pizza>({
-    id: 0,
-    name: "",
-    ingredients: ""
-  });
-  const [editingId, setEditingId] = useState<number | null>(null);
-
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (editingId) {
-      onUpdate(formData);
-      setEditingId(null);
-    } else {
-      onCreate(formData);
-    }
-
-    setFormData({ id: 0, name: "", ingredients: "" });
-  };
+  const pizzaListStyles = useStyles();
 
   const handleEdit = (item: Pizza) => {
     const { id, name, ingredients } = item;
@@ -56,56 +49,13 @@ export function PizzaList({
     setFormData({ id, name, ingredients });
   };
 
-  const handleCancelEdit = () => {
-    setEditingId(null);
-    setFormData({ id: 0, name: "", ingredients: "" });
-  };
-
   return (
-    <div>
-      <Title3>New {name}</Title3>
+    <div className={pizzaListStyles.listWrapper}>
+      {error && <div>{error}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <Field label="Name" required>
-          <Input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleFormChange}
-            required
-          />
-        </Field>
+      <Title3 className={pizzaListStyles.title}>{name}s</Title3>
 
-        <Field label="Ingredients" required>
-          <Input
-            type="text"
-            name="ingredients"
-            value={formData.ingredients}
-            onChange={handleFormChange}
-            required
-          />
-        </Field>
-
-        <Button appearance="primary" type="submit">
-          {editingId ? "Update" : "Create"}
-        </Button>
-
-        {editingId && (
-          <Button
-            appearance="secondary"
-            type="button"
-            onClick={handleCancelEdit}
-          >
-            Cancel
-          </Button>
-        )}
-      </form>
-
-      {error && <div>{error.message}</div>}
-
-      <Title3>{name}s</Title3>
-
-      <ul>
+      <ul className={pizzaListStyles.list}>
         {data.map((item) => (
           <PizzaItem
             key={item.id}

@@ -32,7 +32,6 @@
 				"csharpier.csharpier-vscode",
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
-				"bradlc.vscode-tailwindcss",
 				"postman.postman-for-vscode",
 				"qwtel.sqlite-viewer"
 			],

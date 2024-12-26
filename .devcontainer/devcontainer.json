@@ -14,7 +14,7 @@
 	//		}
 	// }
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet tool install -g dotnet-ef && dotnet tool install csharpier && dotnet dev-certs https",
+	"postCreateCommand": "dotnet tool install -g dotnet-ef && dotnet tool install csharpier && dotnet dev-certs https && cd PizzaClient && npm install",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts"

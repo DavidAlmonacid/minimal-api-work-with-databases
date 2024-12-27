@@ -3,18 +3,9 @@
 {
 	"name": "C# (.NET)",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-8.0",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-8.0-bookworm-slim",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000, 5100],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet tool install -g dotnet-ef && dotnet tool install csharpier && dotnet dev-certs https && cd PizzaClient && npm install",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts"
@@ -23,6 +14,15 @@
 			"version": "stable"
 		}
 	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000, 5100],
+	// "portsAttributes": {
+	//		"5001": {
+	//			"protocol": "https"
+	//		}
+	// }
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "dotnet tool install -g dotnet-ef && dotnet tool install csharpier --create-manifest-if-needed && dotnet dev-certs https && cd PizzaClient && npm install",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
